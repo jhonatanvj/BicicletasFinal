@@ -1,0 +1,93 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 22/05/2024, 9:33:38 a. m.
+    Author     : estudiantes
+*/
+
+
+body {
+                font-family: 'Roboto', sans-serif;
+                font-weight: bold;
+                margin: 0;
+                padding: 0;
+                background-image: url('fondo1.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                
+                justify-content: center; /* Centrar horizontalmente */
+                align-items: center;
+            }
+
+            input[type="submit"] {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                background-color: #3498db;
+                color: #fff;
+                font-size: 16px;
+                font-family: Arial, sans-serif;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+            input[type="text"]:hover {
+                padding: 10px;
+                border: 2px solid #3498db;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                background-color: #f9f9f9;
+                color: #333;
+                font-size: 16px;
+                transition: border-color 0.3s, box-shadow 0.3s;
+            }
+
+            input:focus {
+                outline: none;
+                border-color: #ff6347;
+                box-shadow: 0 0 10px rgba(255, 99, 71, 0.5);
+            }
+
+            .mi-div {
+                background-color: #FFFFCC;
+                width: 300px;
+                height: auto;
+                padding: 20px;
+                border-radius: 10px;
+                
+                
+                outline: none;
+                border-color: #ff6347;
+                box-shadow: 0 0 10px rgba(255, 99, 71, 0.5);
+            }
+
+            .titulo {
+                background-color: #F0E68C;
+                width: 700px;
+                height: 80px;
+                padding: 20px;
+                border-radius: 10px;
+
+            }
+            
+            button{
+                padding: 10px;
+                border: 2px solid #3498db;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                background-color: #f9f9f9;
+                color: #333;
+                font-size: 16px;
+                transition: border-color 0.3s, box-shadow 0.3s;
+                
+                
+            }
+            

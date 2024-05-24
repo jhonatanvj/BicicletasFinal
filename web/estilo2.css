@@ -1,0 +1,92 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : May 22, 2024, 6:04:41 PM
+    Author     : asrre
+*/
+
+body {
+                font-family: 'Roboto', sans-serif;
+                font-weight: bold;
+                margin: 0;
+                padding: 0;
+                background-image: url('fondo2.jpeg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                
+                justify-content: center; /* Centrar horizontalmente */
+                align-items: center;
+            }
+
+                    input[type="submit"] {
+            background-color: #ff6347;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ff4500;
+        }
+
+            input[type="text"]:hover {
+                padding: 10px;
+                border: 2px solid #3498db;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                background-color: #f9f9f9;
+                color: #333;
+                font-size: 16px;
+                transition: border-color 0.3s, box-shadow 0.3s;
+            }
+
+            input:focus {
+                outline: none;
+                border-color: #ff6347;
+                box-shadow: 0 0 10px rgba(255, 99, 71, 0.5);
+            }
+
+            .mi-div {
+                background-color: #FFFFCC;
+                width: 300px;
+                height: auto;
+                padding: 20px;
+                border-radius: 10px;
+                
+                
+                
+                border-color: #ff6347;
+                box-shadow: 0 0 10px rgba(255, 99, 71, 0.5);
+            }
+            
+            
+            select {
+                width: 100%;
+                padding: 8px;
+                margin: 5px 0;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+                font-size: 16px;
+            }
+
+            
+            button{
+                padding: 10px;
+                border: 2px solid #3498db;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                background-color: #f9f9f9;
+                color: #333;
+                font-size: 16px;
+                transition: border-color 0.3s, box-shadow 0.3s;
+                
+                
+            }
