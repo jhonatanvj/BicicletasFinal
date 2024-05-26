@@ -4,92 +4,92 @@
  */
 package Modelo;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author Estudiantes
  */
 public class Bicicleta {
-    
-    List<String> color;
-    List<String> marco;
-    List<String> rueda;
-    List<String> plato;
-    List<String> piñon;
-    List<String> sillin;
+
+    Map<String, Integer> color;
+    Map<String, Integer> marco;
+    Map<String, Integer> rueda;
+    Map<String, Integer> plato;
+    Map<String, Integer> piñon;
+    Map<String, Integer> sillin;
     boolean freno;
     int precio;
     
     public void asignarColor(){
-        this.color=null;
+        this.color = null;
     }
     
     public void asignarMarco(){
-        this.marco=null;
+        this.marco = null;
     }
     
     public void asignarRueda(){
-        this.rueda=null;
+        this.rueda = null;
     }
     
     public void asignarPlato(){
-        this.plato=null;
+        this.plato = null;
     }
     
     public void asignarPiñon(){
-        this.piñon=null;
+        this.piñon = null;
     }
     
     public void asignarSillin(){
-        this.sillin=null;
+        this.sillin = null;
     }
 
-    public List<String> getColor() {
+    public Map<String, Integer> getColor() {
         return color;
     }
 
-    public void setColor(List<String> color) {
+    public void setColor(Map<String, Integer> color) {
         this.color = color;
     }
 
-    public List<String> getMarco() {
+    public Map<String, Integer> getMarco() {
         return marco;
     }
 
-    public void setMarco(List<String> marco) {
+    public void setMarco(Map<String, Integer> marco) {
         this.marco = marco;
     }
 
-    public List<String> getRueda() {
+    public Map<String, Integer> getRueda() {
         return rueda;
     }
 
-    public void setRueda(List<String> rueda) {
+    public void setRueda(Map<String, Integer> rueda) {
         this.rueda = rueda;
     }
 
-    public List<String> getPlato() {
+    public Map<String, Integer> getPlato() {
         return plato;
     }
 
-    public void setPlato(List<String> plato) {
+    public void setPlato(Map<String, Integer> plato) {
         this.plato = plato;
     }
 
-    public List<String> getPiñon() {
+    public Map<String, Integer> getPiñon() {
         return piñon;
     }
 
-    public void setPiñon(List<String> piñon) {
+    public void setPiñon(Map<String, Integer> piñon) {
         this.piñon = piñon;
     }
 
-    public List<String> getSillin() {
+    public Map<String, Integer> getSillin() {
         return sillin;
     }
 
-    public void setSillin(List<String> sillin) {
+    public void setSillin(Map<String, Integer> sillin) {
         this.sillin = sillin;
     }
 
@@ -108,7 +108,5 @@ public class Bicicleta {
     public void setPrecio(int precio) {
         this.precio = precio;
     }
-    
-    
-
 }
+
