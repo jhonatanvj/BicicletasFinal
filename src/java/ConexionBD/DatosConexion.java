@@ -14,16 +14,33 @@ import java.sql.SQLException;
  * @author jhona
  */
 public class DatosConexion {
-    
-    
+
     Conexion cn;
-    
-    public DatosConexion(){
+
+    public DatosConexion() {
         cn = new Conexion();
     }
-    
-    
-    
+
+    public void sumarVenta(String email) {
+        try {
+            PreparedStatement pstm = cn.getConexion().prepareStatement("UPDATE usuario SET venta = venta + 1 WHERE email = ?");
+            pstm.setString(1, email);
+            pstm.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void sumarCompra(String email) {
+        try {
+            PreparedStatement pstm = cn.getConexion().prepareStatement("UPDATE usuario SET compra = compra + 1 WHERE email = ?");
+            pstm.setString(1, email);
+            pstm.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
     public boolean verificarUsuario(String email, String contraseña) {
         boolean usuarioEncontrado = false;
         try {
@@ -37,7 +54,7 @@ public class DatosConexion {
         }
         return usuarioEncontrado;
     }
-        
+
     public ResultSet getUsuarioById(int id) throws SQLException {
         PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT id, "
                 + " nombre, "
@@ -45,8 +62,7 @@ public class DatosConexion {
                 + " compra, "
                 + " venta,"
                 + " email, "
-                + " contraseña, "
-                + " balance "
+                + " contraseña"
                 + " FROM usuario "
                 + " WHERE id = ? ");
         pstm.setInt(1, id);
@@ -54,7 +70,7 @@ public class DatosConexion {
         ResultSet res = pstm.executeQuery();
         return res;
     }
-    
+
     public ResultSet getUsuarios() throws SQLException {
         PreparedStatement pstm = cn.getConexion().prepareStatement("SELECT id, "
                 + " nombre, "
@@ -62,15 +78,14 @@ public class DatosConexion {
                 + " compra, "
                 + " venta,"
                 + " email, "
-                + " contraseña, "
-                + " balance "
+                + " contraseña"
                 + " FROM usuario "
                 + " ORDER BY nombre");
 
         ResultSet res = pstm.executeQuery();
         return res;
     }
-    
+
     public void insertarUsuario(Usuario c) {
         try {
             PreparedStatement pstm = cn.getConexion().prepareStatement("insert into usuario (nombre, "
@@ -87,11 +102,9 @@ public class DatosConexion {
             System.out.println(e);
         }
     }
-        
-       public String getMensaje() {
+
+    public String getMensaje() {
         return cn.getMensaje();
     }
 
 }
-    
-

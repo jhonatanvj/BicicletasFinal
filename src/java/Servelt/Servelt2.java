@@ -32,7 +32,16 @@ public class Servelt2 extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            String tipoBicicleta = request.getParameter("tipobici");
+            String color = request.getParameter("color");
+            String marco = request.getParameter("marco");
+            String rueda = request.getParameter("rueda");
+            String plato = request.getParameter("plato");
+            String piñon = request.getParameter("piñon");
+            String sillin = request.getParameter("sillin");
+            String operacion = request.getParameter("operacion");
+            String email = (String) request.getSession().getAttribute("email");
+
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -44,7 +53,19 @@ public class Servelt2 extends HttpServlet {
             out.println("<div id=\"facturación\"  class='mi-div'>");
 
             out.println("<h1>Facturación</h1>");
-
+            out.println("<form action='Final' method='post'>"); 
+            out.println("<p>Opreacion: " + operacion + "</p>");
+            out.println("<p>Tipo de Bicicleta: " + tipoBicicleta + "</p>");
+            out.println("<p>Color: " + color + "</p>");
+            out.println("<p>Marco: " + marco + "</p>");
+            out.println("<p>Rueda: " + rueda + "</p>");
+            out.println("<p>Plato: " + plato + "</p>");
+            out.println("<p>Piñon: " + piñon + "</p>");
+            out.println("<p>Sillin: " + sillin + "</p>");
+            out.println("<input type='hidden' name='email' value='" + email + "'>");
+            out.println("<input type='hidden' id='operacion' name='operacion' value='" + operacion + "'>");
+            out.println("<input type='submit' name='confirmar' value='Confirmar'>");
+            out.println("</form>");
             out.println("</div>");
             out.println("</center>");
             out.println("</body>");

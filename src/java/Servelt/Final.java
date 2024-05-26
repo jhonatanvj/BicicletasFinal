@@ -5,6 +5,7 @@
 package Servelt;
 
 import ConexionBD.DatosConexion;
+import Modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,8 +18,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author jhona
  */
-@WebServlet(name = "VerificarUsuario", urlPatterns = {"/VerificarUsuario"})
-public class VerificarUsuario extends HttpServlet {
+@WebServlet(name = "Final", urlPatterns = {"/Final"})
+public class Final extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,41 +33,21 @@ public class VerificarUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String email = request.getParameter("email");
-        String contraseña = request.getParameter("contraseña");
-        boolean usuarioValido = false;
         PrintWriter out = response.getWriter();
         DatosConexion conDb = new DatosConexion();
+        String email = request.getParameter("email");
+        String operacion = request.getParameter("operacion");
         try {
-            usuarioValido = conDb.verificarUsuario(email, contraseña);
-        }catch(Exception e){
             
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Inicio</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Error at " + e.toString() + "</h1>");
-            out.println("<p>seguimiento: "+conDb.getMensaje()+"</p>");
-            out.println("</body>");
-            out.println("</html>");
+            if(operacion.equals("Venta")){
+                conDb.sumarVenta(email);
+            }else{
+                conDb.sumarCompra(email);
+            }
+            response.sendRedirect("InicioFinal");
             
-        }
-       
-        if (usuarioValido) {
-            request.getSession().setAttribute("email", email);
-            // Usuario válido, redirigir a otra página
-            response.sendRedirect("Servlet1");
-        } else {
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Error</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1> Usuario No Encontrado </h1>");
-            out.println("<a href=\"index.jsp\">Volver</a>");
-            out.println("</body>");
-            out.println("</html>");
+        } finally {            
+            out.close();
         }
     }
 

@@ -4,7 +4,6 @@
  */
 package Servelt;
 
-import ConexionBD.DatosConexion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,13 +11,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
  * @author jhona
  */
-@WebServlet(name = "VerificarUsuario", urlPatterns = {"/VerificarUsuario"})
-public class VerificarUsuario extends HttpServlet {
+@WebServlet(name = "ViewUsuario", urlPatterns = {"/ViewUsuario"})
+public class ViewUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,41 +34,51 @@ public class VerificarUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String email = request.getParameter("email");
-        String contraseña = request.getParameter("contraseña");
-        boolean usuarioValido = false;
-        PrintWriter out = response.getWriter();
-        DatosConexion conDb = new DatosConexion();
-        try {
-            usuarioValido = conDb.verificarUsuario(email, contraseña);
-        }catch(Exception e){
+        try (PrintWriter out = response.getWriter()) {
+            /* Obtener los datos de la base de datos */
+       HttpSession session = request.getSession();
+            ResultSet contactos = (ResultSet)session.getAttribute("contactos");
+      
             
+
+            /* Escribir el HTML para mostrar los datos */
+            out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Inicio</title>");  
+            out.println("<title>Usuarios</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Error at " + e.toString() + "</h1>");
-            out.println("<p>seguimiento: "+conDb.getMensaje()+"</p>");
+            out.println("<h1>Usuarios</h1>");
+            out.println("<table border='1'>");
+            out.println("<tr>");
+            out.println("<th>ID</th>");
+            out.println("<th>Nombre</th>");
+            out.println("<th>Apellido</th>");
+            out.println("<th>Articulos Comprados</th>");
+            out.println("<th>Articulos Vendidos</th>");
+            out.println("<th>Email</th>");
+            out.println("<th>Contraseña</th>");
+            out.println("</tr>");
+
+            /* Iterar sobre el ResultSet y mostrar cada fila de datos */
+            while (contactos.next()) {
+                out.println("<tr>");
+                out.println("<td>" + contactos.getInt("id") + "</td>");
+                out.println("<td>" + contactos.getString("nombre") + "</td>");
+                out.println("<td>" + contactos.getString("apellido") + "</td>");
+                out.println("<td>" + contactos.getInt("compra") + "</td>");
+                out.println("<td>" + contactos.getInt("venta") + "</td>");
+                out.println("<td>" + contactos.getString("email") + "</td>");
+                out.println("<td>" + contactos.getString("contraseña") + "</td>");
+                out.println("</td>");
+                out.println("</tr>");
+            }
+            out.println("</table>");
+            out.println("<a href='index.jsp'>Volver a pagina inicial</a>");
             out.println("</body>");
             out.println("</html>");
-            
-        }
-       
-        if (usuarioValido) {
-            request.getSession().setAttribute("email", email);
-            // Usuario válido, redirigir a otra página
-            response.sendRedirect("Servlet1");
-        } else {
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Error</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1> Usuario No Encontrado </h1>");
-            out.println("<a href=\"index.jsp\">Volver</a>");
-            out.println("</body>");
-            out.println("</html>");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

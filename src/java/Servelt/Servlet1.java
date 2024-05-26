@@ -15,7 +15,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,6 +51,7 @@ public class Servlet1 extends HttpServlet {
 
         Bicicleta bicicleta = null;
         String tipoBicicleta = request.getParameter("tipoBicicleta");
+        String email = (String) request.getSession().getAttribute("email");
 
         if ("BMX".equals(tipoBicicleta)) {
             bicicleta = new BicicletaBMX();
@@ -73,6 +73,7 @@ public class Servlet1 extends HttpServlet {
             out.println("<script src='funcionalidad.js' defer></script>");
             out.println("</head>");
             out.println("<body>");
+            out.println("<input type='hidden' id='email' name='email' value='" + email + "'>");
             out.println("<div class='centered-container'>"); // Añadir este div
 
             out.println("<div style='text-align: center;'>"); // Centrando el contenido dentro del div
@@ -93,14 +94,22 @@ public class Servlet1 extends HttpServlet {
     }
 
     private void generateForm(PrintWriter out, Bicicleta bicicleta, String tipoBicicleta) {
+        
         out.println("<form action='Servelt2' method='post'>");
         out.println("<div id='form" + tipoBicicleta.toUpperCase() + "' class='mi-div' style='display: block;'>");
+        out.println("<label id='tipobicia name='tipobicia'>" + tipoBicicleta + "</label>");
+        out.println("<input type='hidden' id='tipobici' name='tipobici' value='" + tipoBicicleta + "'>");
         generateSelect(out, "Color", "color", bicicleta.getColor());
         generateSelect(out, "Marco", "marco", bicicleta.getMarco());
         generateSelect(out, "Rueda", "rueda", bicicleta.getRueda());
         generateSelect(out, "Plato", "plato", bicicleta.getPlato());
         generateSelect(out, "Piñon", "piñon", bicicleta.getPiñon());
         generateSelect(out, "Sillin", "sillin", bicicleta.getSillin());
+        out.println("<h2>Operación</h2>");
+        out.println("<select id='operacion' name='operacion'>");
+        out.println("<option value='Venta'>Venta</option>");
+        out.println("<option value='Compra'>Compra</option>");
+        out.println("</select>");
 
         out.println("<br><br>");
         out.println("<input type='submit' value='Facturar'>");
@@ -108,15 +117,14 @@ public class Servlet1 extends HttpServlet {
         out.println("</form>");
     }
 
-private void generateSelect(PrintWriter out, String label, String name, Map<String, Integer> options) {
-    out.println("<h2>" + label + "</h2>");
-    out.println("<select id='" + name + "' name='" + name + "'>");
-    for (Map.Entry<String, Integer> entry : options.entrySet()) {
-        out.println("<option value='" + entry.getKey() + "'>" + entry.getKey() + " - $" + entry.getValue() + "</option>");
+    private void generateSelect(PrintWriter out, String label, String name, Map<String, Integer> options) {
+        out.println("<h2>" + label + "</h2>");
+        out.println("<select id='" + name + "' name='" + name + "' onchange='calcularPrecioTotalSelect()'>"); // Cambio aquí
+        for (Map.Entry<String, Integer> entry : options.entrySet()) {
+            out.println("<option value='" + entry.getKey() + "' data-precio='" + entry.getValue() + "'>" + entry.getKey() + " - $" + entry.getValue() + "</option>");
+        }
+        out.println("</select>");
     }
-    out.println("</select>");
-}
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

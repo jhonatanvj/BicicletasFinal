@@ -12,13 +12,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.ResultSet;
 
 /**
  *
  * @author jhona
  */
-@WebServlet(name = "VerificarUsuario", urlPatterns = {"/VerificarUsuario"})
-public class VerificarUsuario extends HttpServlet {
+@WebServlet(name = "InicioViewUsuario", urlPatterns = {"/InicioViewUsuario"})
+public class InicioViewUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,13 +33,14 @@ public class VerificarUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String email = request.getParameter("email");
-        String contraseña = request.getParameter("contraseña");
-        boolean usuarioValido = false;
         PrintWriter out = response.getWriter();
         DatosConexion conDb = new DatosConexion();
         try {
-            usuarioValido = conDb.verificarUsuario(email, contraseña);
+            System.out.print("hola");
+            ResultSet res = conDb.getUsuarios();
+            System.out.print("hola2");
+            request.getSession().setAttribute("contactos", res);
+            response.sendRedirect("ViewUsuario");
         }catch(Exception e){
             
             out.println("<html>");
@@ -51,22 +53,8 @@ public class VerificarUsuario extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
             
-        }
-       
-        if (usuarioValido) {
-            request.getSession().setAttribute("email", email);
-            // Usuario válido, redirigir a otra página
-            response.sendRedirect("Servlet1");
-        } else {
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Error</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1> Usuario No Encontrado </h1>");
-            out.println("<a href=\"index.jsp\">Volver</a>");
-            out.println("</body>");
-            out.println("</html>");
+        }finally {            
+            out.close();
         }
     }
 
