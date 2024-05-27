@@ -61,10 +61,15 @@ public class VerificarUsuario extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Error</title>");  
+            out.println("<link rel=\"stylesheet\" href=\"estilo3.css\">");
+            
             out.println("</head>");
+            out.println("<center>");
             out.println("<body>");
+            out.println("<div id=\"noEnc\"  class='mi-div'>");
             out.println("<h1> Usuario No Encontrado </h1>");
             out.println("<a href=\"index.jsp\">Volver</a>");
+            out.println("</center>");
             out.println("</body>");
             out.println("</html>");
         }

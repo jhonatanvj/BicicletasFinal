@@ -14,9 +14,9 @@ import java.sql.SQLException;
  */
 public class Conexion {
     
-    static String bd = "bicicletas";
+    static String bd = "bici2";
     static String login = "root";
-    static String password = "Hijo2005+";
+    static String password = "mysql";
     static String url = "jdbc:mysql://localhost/"+bd;
     static String mensaje = "";
     

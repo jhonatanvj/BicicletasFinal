@@ -45,9 +45,12 @@ public class ViewUsuario extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Usuarios</title>");            
+            out.println("<title>Usuarios</title>");
+            out.println("<link rel=\"stylesheet\" href=\"estilo4.css\">");
             out.println("</head>");
             out.println("<body>");
+            out.println("<center>");
+            out.println("<div id=\"viewUs\"  class='mi-div'>");
             out.println("<h1>Usuarios</h1>");
             out.println("<table border='1'>");
             out.println("<tr>");
@@ -59,7 +62,7 @@ public class ViewUsuario extends HttpServlet {
             out.println("<th>Email</th>");
             out.println("<th>Contraseña</th>");
             out.println("</tr>");
-
+            
             /* Iterar sobre el ResultSet y mostrar cada fila de datos */
             while (contactos.next()) {
                 out.println("<tr>");
@@ -74,8 +77,13 @@ public class ViewUsuario extends HttpServlet {
                 out.println("</tr>");
             }
             out.println("</table>");
+            out.println("<div class='boton'>");
             out.println("<a href='index.jsp'>Volver a pagina inicial</a>");
+            out.println("</div>");
+            out.println("</center>");
+            
             out.println("</body>");
+            
             out.println("</html>");
         } catch (SQLException e) {
             e.printStackTrace();
