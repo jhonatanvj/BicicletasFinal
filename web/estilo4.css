@@ -3,8 +3,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
 */
 /* 
-    Created on : May 23, 2024, 4:47:33 PM
-    Author     : asrre
+    Created on : 27/05/2024, 9:22:45 a. m.
+    Author     : Estudiantes
 */
 
 body {
@@ -55,7 +55,7 @@ body {
 
             .mi-div {
                 background-color: #FFFFCC;
-                width: 300px;
+                width: auto;
                 height: auto;
                 padding: 20px;
                 border-radius: 10px;
@@ -85,22 +85,4 @@ body {
                 font-size: 16px;
                 transition: border-color 0.3s, box-shadow 0.3s;
                 
-                
             }
-            
-            .boton{
-             
-                padding: 10px;
-                border: 2px solid #3498db;
-                border-radius: 5px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                background-color: #f9f9f9;
-                color: #333;
-                font-size: 16px;
-                transition: border-color 0.3s, box-shadow 0.3s;
-                
-                
-            }
-                
-                
-            
